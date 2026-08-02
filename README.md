@@ -26,4 +26,6 @@ Open `prices.xlsx`:
 
 Cursor Automation **Roompot Kamperland price tracker** runs every 4th calendar day at 09:00, scrapes the URL above, appends a row, and commits. Tracking stops after **2026-11-30** (or when you disable the automation).
 
+See [`AUTOMATION.md`](AUTOMATION.md) for the ready-to-paste schedule, settings, and agent prompt used to set this automation up in Cursor.
+
 No email/Slack alerts — check this Excel file for increases, decreases, and unavailability.
