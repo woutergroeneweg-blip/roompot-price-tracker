@@ -57,6 +57,16 @@ You are the "Roompot Kamperland price tracker" scheduled automation.
 
 ## Notes
 
+- **Timezone (verified):** the first scheduled run fired at **09:09 UTC** on 2026-08-01
+  (i.e. 11:09 in Amsterdam summer time), so the cron is being interpreted in **UTC**, not
+  Europe/Amsterdam. If you want the run at 09:00 Amsterdam local time, set the automation's
+  timezone to Europe/Amsterdam if the UI supports it, otherwise use cron `0 7 */4 * *`
+  during CEST (summer) / `0 8 */4 * *` during CET (winter). The timestamp written into the
+  sheet is still correct Amsterdam local time regardless.
+- **PRs vs direct commits (verified):** the scheduled run opens a **pull request** from its
+  own `cursor/...` branch (e.g. PR #2) rather than pushing straight to `main` — this is the
+  default cloud-agent behavior and overrides a "push to main" instruction in the prompt.
+  Merge those PRs (or turn the run into an auto-merge flow) to keep `main`'s history current.
 - The helper derives the `change` and `lowest_total_eur_so_far` columns and keeps the
   "Total price over time" chart pointed at every row, so the prompt only needs the raw
   observed amounts.
